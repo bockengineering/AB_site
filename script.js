@@ -52,24 +52,14 @@ class TextScramble {
     }
 }
 
-function wrapBioLines() {
-    const bioElement = document.getElementById('bio');
-    if (bioElement) {
-        const lines = bioElement.innerText.split('\n').filter(line => line.trim() !== '');
-        bioElement.innerHTML = lines.map(line => 
-            `<div class="bio-line">${line}</div>`
-        ).join('');
-    }
-}
-
 function scrambleBio() {
-    const bioLines = document.querySelectorAll('.bio-line');
-    bioLines.forEach((line, index) => {
-        setTimeout(() => {
-            const fx = new TextScramble(line);
-            fx.setText(line.textContent);
-        }, index * 2000);
-    });
+    const bioElement = document.getElementById('bio');
+    const fx = new TextScramble(bioElement);
+    const bioText = `I'm a deep tech investor at Booz Allen Ventures,
+focusing on AI, quantum computing, and cybersecurity.
+Previously, I led product at Cylance (acq. by Blackberry)
+and was an early employee at Palantir Technologies.`;
+    fx.setText(bioText);
 }
 
 function loadContent(section) {
@@ -141,16 +131,7 @@ function handleScroll() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    const bioText = `I'm a deep tech investor at Booz Allen Ventures,
-focusing on AI, quantum computing, and cybersecurity.
-Previously, I led product at Cylance (acq. by Blackberry)
-and was an early employee at Palantir Technologies.`;
-    
-    document.getElementById('bio').textContent = bioText;
-    
-    wrapBioLines();
-    setTimeout(scrambleBio, 500);
-
+    scrambleBio();
     loadContent('projects');
 
     document.querySelectorAll('.menu li').forEach(item => {
@@ -161,8 +142,6 @@ and was an early employee at Palantir Technologies.`;
             loadContent(section);
         });
     });
-
-    document.querySelector('.right-side').addEventListener('scroll', handleScroll);
 
     // Set social media links
     document.getElementById('twitter-link').href = 'https://twitter.com/yourtwitterhandle';
