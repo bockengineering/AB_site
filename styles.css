@@ -32,7 +32,22 @@ body, html {
     display: flex;
     flex-direction: column;
     height: 100%;
-    overflow-y: auto;
+    overflow-y: auto; /* Enable vertical scrolling */
+    scrollbar-width: thin; /* For Firefox */
+    scrollbar-color: #A27B5C #111111; /* For Firefox */
+}
+
+.left-side::-webkit-scrollbar {
+    width: 8px; /* Width of the scrollbar */
+}
+
+.left-side::-webkit-scrollbar-track {
+    background: #111111; /* Color of the track */
+}
+
+.left-side::-webkit-scrollbar-thumb {
+    background-color: #A27B5C; /* Color of the scroll thumb */
+    border-radius: 4px; /* Rounded corners on the scroll thumb */
 }
 
 .left-content {

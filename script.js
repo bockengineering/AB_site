@@ -55,10 +55,7 @@ class TextScramble {
 function scrambleBio() {
     const bioElement = document.getElementById('bio');
     const fx = new TextScramble(bioElement);
-    const bioText = `I'm a deep tech investor at Booz Allen Ventures,
-focusing on AI, quantum computing, and cybersecurity.
-Previously, I led product at Cylance (acq. by Blackberry)
-and was an early employee at Palantir Technologies.`;
+    const bioText = `I’m a hardware innovator and jetpack developer with a passion for groundbreaking technology. From developing autonomy software at Northrop Grumman to building and piloting jetpacks for RedBull, I’m always on the hunt for the next frontier in tech. When I’m not deep in code or trying to understand new, outlandish possibilities, you can find me on the slopes.`;
     fx.setText(bioText);
 }
 
@@ -144,8 +141,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Set social media links
-    document.getElementById('twitter-link').href = 'https://twitter.com/yourtwitterhandle';
+    document.getElementById('twitter-link').href = 'https://twitter.com/lexBock';
     document.getElementById('github-link').href = 'https://github.com/yourgithubhandle';
+    document.getElementById('linkedin-link').href = 'https://www.linkedin.com/in/alexbock';
+    document.getElementById('contact-link').href = 'mailto:alex11bock@gmail.com'; // Or link to a contact form
 
     // Initialize particle effect
     demo.start();
