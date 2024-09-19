@@ -146,4 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Set social media links
     document.getElementById('twitter-link').href = 'https://twitter.com/yourtwitterhandle';
     document.getElementById('github-link').href = 'https://github.com/yourgithubhandle';
+
+    // Initialize particle effect
+    demo.start();
 });

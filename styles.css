@@ -5,18 +5,30 @@ body, html {
     padding: 0;
     height: 100%;
     font-family: 'Ailerons', sans-serif;
-    background-color: #111;
-    color: #f0f0f0;
+    background-color: #1111119f;
+    color: #A27B5C;
+}
+
+#particle-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
 }
 
 .container {
     display: flex;
     min-height: 100vh;
+    padding-top: 2rem; /* Add this line to reduce space at the top */
+    z-index: 1;
+    /* Rest of your container styles */
 }
 
 .left-side {
     width: 30%;
-    padding: 2rem;
+    padding: 1rem 2rem; /* Reduce top padding */
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -24,26 +36,26 @@ body, html {
 
 .header {
     text-align: left;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem; /* Reduce bottom margin */
 }
 
 .name {
-    font-size: 10em;
-    margin-bottom: 0.2em;
+    font-size: 10.0em;
+    margin-bottom: 0.1em; /* Reduce space below name */
+    margin-top: 0; /* Remove default top margin */
 }
 
 .job-title {
-    font-size: 1em;
-    margin-bottom: 1em;
+    font-size: 2em;
+    margin-bottom: 0.5em; /* Reduce space below job title */
     color: #ccc;
 }
 
 .bio {
-    font-family: 'Ailerons', monospace;
-    font-size: 1em;
+    font-size: 1.2em;
     color: #888;
-    line-height: 1.6;
-    margin-bottom: 2rem;
+    line-height: 1.4; /* Slightly reduce line height */
+    margin-bottom: 1.5rem; /* Reduce space below bio */
 }
 
 .right-side {
@@ -72,13 +84,13 @@ body, html {
 }
 
 .menu-number {
-    font-size: 0.8em;
+    font-size: 1.2em;
     margin-right: 1em;
     color: #555;
 }
 
 .menu-text {
-    font-size: 0.9em;
+    font-size: 1.9em;
     text-transform: uppercase;
     letter-spacing: 1px;
     color: #ccc;
