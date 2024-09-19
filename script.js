@@ -59,62 +59,62 @@ function scrambleBio() {
     fx.setText(bioText);
 }
 
+const reads = [
+    {
+        title: "The Future of AI in Healthcare",
+        author: "Jane Doe",
+        publication: "Tech Health Journal",
+        date: "2023-05-15",
+        link: "https://example.com/ai-healthcare",
+        description: "An insightful look into how AI is revolutionizing the healthcare industry."
+    },
+    {
+        title: "Quantum Computing: A Beginner's Guide",
+        author: "John Smith",
+        publication: "Quantum Quarterly",
+        date: "2023-04-22",
+        link: "https://example.com/quantum-computing-guide",
+        description: "A comprehensive introduction to the principles of quantum computing."
+    },
+    // Add more articles here
+];
+
 function loadContent(section) {
     const content = document.getElementById('content');
     let html = '';
-    let number = '';
 
     switch(section) {
         case 'projects':
-            number = '01';
-            html = `
-                <div class="content-item">
-                    <div class="content-icon">▶</div>
-                    <div class="content-text">
-                        <h2>Prismic Studio</h2>
-                        <div class="meta">Prismic Studio — with Sadek Drobi</div>
-                        <div class="date">OCTOBER 15, 2019</div>
-                    </div>
-                </div>
-            `;
+            // ... existing projects code ...
             break;
-        case 'talks':
-            number = '02';
+        case 'reads':
             html = `
-                <div class="content-item">
-                    <div class="content-icon">▶</div>
-                    <div class="content-text">
-                        <h2>Utility-First CSS</h2>
-                        <div class="meta">This Dot Media — with Rob Ocel, Jake Dohm, Adam Wathan</div>
-                        <div class="date">JULY 9, 2019</div>
-                    </div>
-                </div>
+                <h2>What I'm Reading:</h2>
+                <ul class="reads-list">
+                    ${reads.map(article => `
+                        <li class="article-box">
+                            <a href="${article.link}" target="_blank" class="article-link">
+                                <h3>${article.title}</h3>
+                                <p class="article-meta">By ${article.author} in ${article.publication}</p>
+                                <p class="article-description">${article.description}</p>
+                                <p class="article-date">${formatDate(article.date)}</p>
+                            </a>
+                        </li>
+                    `).join('')}
+                </ul>
             `;
             break;
         case 'interviews':
-            number = '03';
-            html = `
-                <div class="content-item">
-                    <div class="content-icon">🎙</div>
-                    <div class="content-text">
-                        <h2>My JavaScript Story</h2>
-                        <div class="meta">Devchat.tv — with Charles Max Wood</div>
-                        <div class="date">JUNE 24, 2019</div>
-                    </div>
-                </div>
-            `;
+            // ... existing interviews code ...
             break;
     }
 
     content.innerHTML = html;
+}
 
-    setTimeout(() => {
-        document.querySelectorAll('.content-item').forEach((item, index) => {
-            setTimeout(() => {
-                item.classList.add('visible');
-            }, index * 100);
-        });
-    }, 100);
+function formatDate(dateString) {
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return new Date(dateString).toLocaleDateString('en-US', options);
 }
 
 function handleScroll() {
