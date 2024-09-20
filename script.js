@@ -79,13 +79,41 @@ const reads = [
     // Add more articles here
 ];
 
+const projects = [
+    {
+        name: "RQ4-B Dynamic Mission Operations (DYNAMO)",
+        description: "Northrop Grumman was awarded a contract by the United States Air Force to provide dynamic inflight rerouting for RQ-4B Global Hawk. This software update, known as Dynamic Mission Operations (DYNAMO), will enhance Global Hawk's ability to provide critical intelligence, surveillance, and reconnaissance data to geographic combatant commanders.",
+        image: "images/Global-Hawk.jpg",
+        link: "https://news.northropgrumman.com/news/releases/northrop-grumman-awarded-mission-planning-contract-to-increase-global-hawk-operational-flexibility"
+    },
+    {
+        name: "Microturbine Jetpack for Red Bull Air Race",
+        description: "We developed and flew a cutting-edge microturbine jetpack for the Red Bull Air Race. This innovative project showcases the intersection of advanced engineering and extreme sports, pushing the boundaries of what's possible in personal flight technology.",
+        image: "images/jetpack.jpg", 
+        link: "https://www.youtube.com/watch?v=GFadyUqRKek"
+    },
+    // Add more projects as needed
+];
+
 function loadContent(section) {
     const content = document.getElementById('content');
     let html = '';
 
     switch(section) {
         case 'projects':
-            // ... existing projects code ...
+            html = `
+                <h2>Projects</h2>
+                <ul class="projects-list">
+                    ${projects.map(project => `
+                        <li class="project-box">
+                            <img src="${project.image}" alt="${project.name}" class="project-image">
+                            <h3>${project.name}</h3>
+                            <p class="project-description">${project.description}</p>
+                            ${project.link ? `<a href="${project.link}" target="_blank" class="project-link">Read more</a>` : ''}
+                        </li>
+                    `).join('')}
+                </ul>
+            `;
             break;
         case 'reads':
             html = `
@@ -148,4 +176,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initialize particle effect
     demo.start();
+
+    // Function to fetch GitHub repositories
+    async function fetchGitHubRepos() {
+        const username = 'yourgithubusername';
+        const response = await fetch(`https://api.github.com/users/${username}/repos`);
+        const repos = await response.json();
+        
+        // Process and update the projects array with GitHub data
+        repos.forEach(repo => {
+            const existingProject = projects.find(p => p.github === repo.html_url);
+            if (existingProject) {
+                existingProject.description = repo.description || existingProject.description;
+                existingProject.technologies = repo.topics || existingProject.technologies;
+            } else {
+                projects.push({
+                    name: repo.name,
+                    description: repo.description || "No description available.",
+                    technologies: repo.topics || [],
+                    github: repo.html_url,
+                    image: "path/to/default-project-image.jpg" // You might want to set a default image
+                });
+            }
+        });
+
+        // Reload the projects section if it's currently active
+        if (document.querySelector('.menu li.active').dataset.section === 'projects') {
+            loadContent('projects');
+        }
+    }
+
+    // Call this function when the page loads
+    fetchGitHubRepos();
 });
