@@ -82,13 +82,13 @@ const reads = [
 const projects = [
     {
         name: "RQ4-B Dynamic Mission Operations (DYNAMO)",
-        description: "Northrop Grumman was awarded a contract by the United States Air Force to provide dynamic inflight rerouting for RQ-4B Global Hawk. This software update, known as Dynamic Mission Operations (DYNAMO), will enhance Global Hawk's ability to provide critical intelligence, surveillance, and reconnaissance data to geographic combatant commanders.",
+        description: "Northrop Grumman was awarded a contract by the United States Air Force to provide dynamic inflight rerouting for RQ-4B Global Hawk.",
         image: "images/Global-Hawk.jpg",
         link: "https://news.northropgrumman.com/news/releases/northrop-grumman-awarded-mission-planning-contract-to-increase-global-hawk-operational-flexibility"
     },
     {
         name: "Microturbine Jetpack for Red Bull Air Race",
-        description: "We developed and flew a cutting-edge microturbine jetpack for the Red Bull Air Race. This innovative project showcases the intersection of advanced engineering and extreme sports, pushing the boundaries of what's possible in personal flight technology.",
+        description: "We developed and flew a cutting-edge microturbine jetpack for the Red Bull Air Race. We the first to fly a turbine powered manned VTOL device safely and successfully",
         image: "images/jetpack.jpg", 
         link: "https://www.youtube.com/watch?v=GFadyUqRKek"
     },
