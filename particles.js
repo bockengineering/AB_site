@@ -2,7 +2,7 @@ const NUM_PARTICLES = 500;
 const TAIL_LENGTH = 15;
 const MAX_FORCE = 8;
 const FRICTION = 0.85;
-const GRAVITY = 9.81;
+const GRAVITY = 5.81;
 
 const COLORS = [
   '#1A3636',

@@ -1,13 +1,17 @@
 @import url('https://fonts.cdnfonts.com/css/ailerons');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Montserrat:wght@400;700&display=swap');
+@import url('https://fonts.cdnfonts.com/css/alumni-sans');
 
 body, html {
     margin: 0;
     padding: 0;
     height: 100%;
     font-family: 'Ailerons', sans-serif;
-    background-color: #1111119f;
+    background-color: #111111b7;
     color: #A27B5C;
     overflow-x: hidden; /* Prevent horizontal scrolling */
+    font-size: 16px; /* Base font size */
 }
 
 #particle-canvas {
@@ -21,17 +25,18 @@ body, html {
 
 .container {
     display: flex;
-    min-height: calc(100vh - 60px); /* Adjust based on your footer height */
-    overflow: hidden;
+    min-height: 100vh;
+    padding-bottom: 60px; /* Adjust this value to match your footer height */
+    box-sizing: border-box;
 }
 
 .left-side {
-    width: 40%; /* Increase this value to make the left column wider */
+    width: 60%; /* Adjust as needed */
     padding: 2rem;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    height: 100%;
+    height: calc(100vh - 60px); /* Subtract footer height */
     overflow-y: auto; /* Enable vertical scrolling */
     scrollbar-width: thin; /* For Firefox */
     scrollbar-color: #A27B5C #111111; /* For Firefox */
@@ -51,6 +56,11 @@ body, html {
 }
 
 .left-content {
+    background-color: rgba(162, 123, 92, 0.2); /* Half-transparent background */
+    border: 1px solid rgba(162, 123, 92, 0.3);
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     flex-grow: 1;
     overflow-y: auto;
 }
@@ -61,30 +71,30 @@ body, html {
 }
 
 .name {
-    font-size: 10.0em;
-    margin-bottom: 0.1em; /* Reduce space below name */
-    margin-top: 0; /* Remove default top margin */
+    font-size: 6rem; /* Reduced from 9rem for better screen fit */
+    margin-bottom: 0.1em;
+    margin-top: 0;
 }
 
 .job-title {
-    font-size: 2em;
-    margin-bottom: 0.5em; /* Reduce space below job title */
+    font-size: 1.7rem;
+    margin-bottom: 0.5em;
     color: #ccc;
 }
 
 .bio {
-    font-size: 1.2em;
-    color: #888;
-    line-height: 1.4;
-    margin-bottom: 1.5rem;
+    font-family: 'Alumni Sans', sans-serif;
+    font-size: 1.5rem;
+    line-height: 1.6;
+    color: #ccc;
 }
 
 .right-side {
     width: 60%; /* Decrease this value to complement the left column */
-    padding: 2rem;
+    padding: 4rem;
     box-sizing: border-box;
     overflow-y: auto;
-    height: 100%;
+    height: calc(100vh - 60px); /* Subtract footer height */
 }
 
 .menu {
@@ -105,13 +115,13 @@ body, html {
 }
 
 .menu-number {
-    font-size: 1.2em;
+    font-size: 1.2rem;
     margin-right: 1em;
     color: #555;
 }
 
 .menu-text {
-    font-size: 1.9em;
+    font-size: 1.9rem;
     text-transform: uppercase;
     letter-spacing: 1px;
     color: #ccc;
@@ -132,7 +142,7 @@ body, html {
     color: #f0f0f0;
     text-decoration: none;
     margin: 0.5em 1em;
-    font-size: 0.9em;
+    font-size: 1.2em;
     transition: color 0.3s ease;
 }
 
@@ -143,7 +153,7 @@ body, html {
 /* Style for the Contact Me button */
 .social-links a#contact-link {
     border: 1px solid #f0f0f0;
-    padding: 0.5em 1em;
+    padding: 0.2em 1em;
     border-radius: 5px;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
@@ -153,26 +163,21 @@ body, html {
     color: #111111;
 }
 
+.bio-block {
+    background-color: rgba(162, 123, 92, 0.1); /* Match the Reads page */
+    border: 1px solid rgba(162, 123, 92, 0.3);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 2rem;
+}
+
 .bio-line {
     position: relative;
     overflow: hidden;
     white-space: nowrap;
-}
-
-.bio-line::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
-    background: #111;
-    border-left: 2px solid #f0f0f0;
-    animation: typing 2s steps(40) forwards;
-}
-
-@keyframes typing {
-    to { width: 0; }
+    background-color: rgba(162, 123, 92, 0.1); /* Match the Reads page */
+    padding: 0.5rem;
+    border-radius: 4px;
 }
 
 .content-item {
@@ -228,5 +233,168 @@ body, html {
     background-color: #111111;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     padding: 1rem 0;
+    height: 60px; /* Set a fixed height for the footer */
+    box-sizing: border-box;
     z-index: 10;
+}
+
+.reads-list {
+    list-style-type: none;
+    padding: 0;
+    display: grid;
+    gap: 2rem;
+}
+
+.article-box {
+    background-color: rgba(162, 123, 92, 0.1);
+    border: 1px solid rgba(162, 123, 92, 0.3);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.article-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.article-link {
+    display: block;
+    padding: 1.5rem;
+    color: inherit;
+    text-decoration: none;
+}
+
+.article-box h3 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    font-size: 1.2em;
+    color: #A27B5C;
+    transition: color 0.3s ease;
+}
+
+.article-box:hover h3 {
+    color: #fff;
+}
+
+.article-meta {
+    font-size: 0.9em;
+    color: #888;
+    margin-bottom: 0.5rem;
+}
+
+.article-description {
+    font-size: 0.95em;
+    color: #ccc;
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+}
+
+.article-date {
+    font-size: 0.8em;
+    color: #666;
+    margin-bottom: 0;
+}
+
+.projects-list {
+    list-style-type: none;
+    padding: 0;
+    display: grid;
+    gap: 2rem;
+    padding-bottom: 60px; /* Add padding at the bottom equal to footer height */
+}
+
+.project-box {
+    background-color: rgba(162, 123, 92, 0.1);
+    border: 1px solid rgba(162, 123, 92, 0.3);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.project-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.project-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.project-box h3 {
+    margin: 1rem 1rem 0.5rem;
+    color: #A27B5C;
+    font-size: 2em;
+}
+
+.project-description {
+    margin: 0 1rem 1rem;
+    color: #ccc;
+    font-size: 1.1em;
+    line-height: 1.4;
+    flex-grow: 1;
+}
+
+.project-link {
+    display: inline-block;
+    margin: 0 1rem 1rem;
+    padding: 0.5rem 1rem;
+    background-color: #A27B5C;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.project-link:hover {
+    background-color: #8a6b4e;
+}
+
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    height: 0;
+    overflow: hidden;
+    margin-bottom: 1rem;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 1200px) {
+    .name {
+        font-size: 7rem;
+    }
+    .job-title, .bio, .menu-number, .menu-text {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .name {
+        font-size: 5rem;
+    }
+    .job-title, .bio, .menu-number, .menu-text {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .name {
+        font-size: 3.5rem;
+    }
+    .job-title, .bio, .menu-number, .menu-text {
+        font-size: 0.9rem;
+    }
 }
