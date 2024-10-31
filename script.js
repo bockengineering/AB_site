@@ -52,6 +52,7 @@ class TextScramble {
     }
 }
 
+// This is the bio text that is scrambled but is not used right now.
 function scrambleBio() {
     const bioElement = document.getElementById('bio');
     const fx = new TextScramble(bioElement);
@@ -156,7 +157,9 @@ function handleScroll() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    scrambleBio();
+    const bioElement = document.getElementById('bio');
+    bioElement.innerText = `Venture capital investor and mechanical engineer with a career rooted in hardware innovation and high-stakes tech. From building autonomy software at Northrop Grumman to designing and building jetpacks for Red Bull, I’m drawn to cutting-edge projects that push limits. Outside the shop, I channel the same intensity into the mountains and outdoors, constantly seeking new, adrenaline-fueled challenges. I focus on transformative technologies with real-world impact and mission.`;
+
     loadContent('projects');
 
     document.querySelectorAll('.menu li').forEach(item => {
