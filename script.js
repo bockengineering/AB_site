@@ -96,6 +96,22 @@ const projects = [
     // Add more projects as needed
 ];
 
+// Array of media items 
+const listens = [
+    {
+        type: 'youtube',
+        embedId: 'tBU5UPI03Rg',
+        title: 'Ep19. State of Venture, AI Scaling, Elections | BG2 w/ Bill Gurley, Brad Gerstner, & Jamin Ball',
+        host: 'Bg2 Pod'
+    },
+    {
+        type: 'spotify',
+        embedId: '6mvT6nqdjXEGQ83dRrWIKp',
+        title: 'Your Spotify Episode Title',
+        host: 'Podcast Name'
+    }
+];
+
 function loadContent(section) {
     const content = document.getElementById('content');
     let html = '';
@@ -133,8 +149,65 @@ function loadContent(section) {
                 </ul>
             `;
             break;
-        case 'interviews':
-            // ... existing interviews code ...
+        case 'writing':
+            html = `
+                <h2>Writing</h2>
+                <ul class="writing-list">
+                    <li class="article-box">
+                        <a href="https://example.com/article1" target="_blank" class="article-link">
+                            <h3>The Future of Personal Aviation</h3>
+                            <p class="article-meta">Published in Aviation Weekly</p>
+                            <p class="article-description">An exploration of how personal flying devices are reshaping transportation.</p>
+                            <p class="article-date">March 15, 2024</p>
+                        </a>
+                    </li>
+                    <li class="article-box">
+                        <a href="https://example.com/article2" target="_blank" class="article-link">
+                            <h3>Autonomous Systems in Modern Warfare</h3>
+                            <p class="article-meta">Published in Defense Technology Review</p>
+                            <p class="article-description">Analysis of the role of autonomous systems in military applications.</p>
+                            <p class="article-date">February 1, 2024</p>
+                        </a>
+                    </li>
+                </ul>
+            `;
+            break;
+        case 'listens':
+            html = `
+                <h2>Listens</h2>
+                <ul class="listens-list">
+                    ${listens.map(media => `
+                        <li class="media-box">
+                            <div class="video-container">
+                                ${media.type === 'youtube' ? 
+                                    `<iframe 
+                                        src="https://www.youtube.com/embed/${media.embedId}"
+                                        title="${media.title}"
+                                        frameborder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                        referrerpolicy="strict-origin-when-cross-origin"
+                                        allowfullscreen>
+                                    </iframe>` :
+                                    `<iframe 
+                                        style="border-radius:12px" 
+                                        src="https://open.spotify.com/embed/episode/${media.embedId}?utm_source=generator"
+                                        width="100%" 
+                                        height="352" 
+                                        frameBorder="0" 
+                                        allowfullscreen="" 
+                                        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                                        loading="lazy">
+                                    </iframe>`
+                                }
+                            </div>
+                            <div class="media-content">
+                                <h3>${media.title}</h3>
+                                <p class="media-host">On ${media.host}</p>
+                            </div>
+                        </li>
+                    `).join('')}
+                </ul>
+            `;
             break;
     }
 
