@@ -56,13 +56,16 @@ body, html {
 }
 
 .left-content {
-    background-color: rgba(162, 123, 92, 0.2); /* Half-transparent background */
+    background-color: rgba(162, 123, 92, 0.2);
     border: 1px solid rgba(162, 123, 92, 0.3);
     border-radius: 8px;
     padding: 1rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     flex-grow: 1;
     overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+
 }
 
 .header {
@@ -71,22 +74,23 @@ body, html {
 }
 
 .name {
-    font-size: 6rem; /* Reduced from 9rem for better screen fit */
+    font-size: 8rem; /* Reduced from 9rem for better screen fit */
     margin-bottom: 0.1em;
     margin-top: 0;
 }
 
 .job-title {
-    font-size: 1.7rem;
+    font-size: 2.2rem;
     margin-bottom: 0.5em;
     color: #ccc;
 }
 
 .bio {
     font-family: 'Alumni Sans', sans-serif;
-    font-size: 1.5rem;
+    font-size: 2.0rem;
     line-height: 1.6;
     color: #ccc;
+    margin-bottom: 2rem;
 }
 
 .right-side {
@@ -100,7 +104,7 @@ body, html {
 .menu {
     list-style-type: none;
     padding: 0;
-    margin-top: 2em;
+    margin: auto 0;
 }
 
 .menu li {
@@ -115,13 +119,13 @@ body, html {
 }
 
 .menu-number {
-    font-size: 1.2rem;
+    font-size: 5.0rem;
     margin-right: 1em;
     color: #555;
 }
 
 .menu-text {
-    font-size: 1.9rem;
+    font-size: 5.0rem;
     text-transform: uppercase;
     letter-spacing: 1px;
     color: #ccc;
@@ -376,8 +380,11 @@ body, html {
     .name {
         font-size: 7rem;
     }
-    .job-title, .bio, .menu-number, .menu-text {
-        font-size: 1.2rem;
+    .job-title {
+        font-size: 1.8rem;
+    }
+    .bio, .menu-number, .menu-text {
+        font-size: 1.4rem;
     }
 }
 
@@ -385,8 +392,11 @@ body, html {
     .name {
         font-size: 5rem;
     }
-    .job-title, .bio, .menu-number, .menu-text {
-        font-size: 1rem;
+    .job-title {
+        font-size: 1.6rem;
+    }
+    .bio, .menu-number, .menu-text {
+        font-size: 1.2rem;
     }
 }
 
@@ -394,7 +404,10 @@ body, html {
     .name {
         font-size: 3.5rem;
     }
-    .job-title, .bio, .menu-number, .menu-text {
-        font-size: 0.9rem;
+    .job-title {
+        font-size: 1.4rem;
+    }
+    .bio, .menu-number, .menu-text {
+        font-size: 1.1rem;
     }
 }
