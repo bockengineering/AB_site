@@ -112,6 +112,16 @@ const listens = [
     }
 ];
 
+const writings = [
+    {
+        type: 'substack',
+        title: 'State of Venture: Q3 2024',
+        author: 'Alex Bock',
+        url: 'https://alexbock.substack.com/p/state-of-venture-q3-2024'
+    },
+    // Add more posts in the same format
+];
+
 function loadContent(section) {
     const content = document.getElementById('content');
     let html = '';
@@ -153,24 +163,23 @@ function loadContent(section) {
             html = `
                 <h2>Writing</h2>
                 <ul class="writing-list">
-                    <li class="article-box">
-                        <a href="https://example.com/article1" target="_blank" class="article-link">
-                            <h3>The Future of Personal Aviation</h3>
-                            <p class="article-meta">Published in Aviation Weekly</p>
-                            <p class="article-description">An exploration of how personal flying devices are reshaping transportation.</p>
-                            <p class="article-date">March 15, 2024</p>
-                        </a>
-                    </li>
-                    <li class="article-box">
-                        <a href="https://example.com/article2" target="_blank" class="article-link">
-                            <h3>Autonomous Systems in Modern Warfare</h3>
-                            <p class="article-meta">Published in Defense Technology Review</p>
-                            <p class="article-description">Analysis of the role of autonomous systems in military applications.</p>
-                            <p class="article-date">February 1, 2024</p>
-                        </a>
-                    </li>
+                    ${writings.map(post => `
+                        <li class="article-box">
+                            <div class="substack-post-embed">
+                                <p lang="en">${post.title} by ${post.author}</p>
+                                <a data-post-link href="${post.url}">Read on Substack</a>
+                            </div>
+                        </li>
+                    `).join('')}
                 </ul>
             `;
+            // Add Substack embed script dynamically
+            setTimeout(() => {
+                const script = document.createElement('script');
+                script.src = 'https://substack.com/embedjs/embed.js';
+                script.async = true;
+                document.body.appendChild(script);
+            }, 100);
             break;
         case 'listens':
             html = `
