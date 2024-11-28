@@ -98,7 +98,8 @@ body, html {
     width: 70%;
     padding: 2rem;
     box-sizing: border-box;
-    overflow-y: auto;
+    height: 100vh; /* Full viewport height */
+    overflow-y: scroll; /* Enable scrolling */
     overflow-x: hidden;
 }
 
@@ -306,7 +307,6 @@ body, html {
     padding: 0;
     list-style: none;
     width: 100%;
-    box-sizing: border-box;
 }
 
 .project-box {
@@ -591,15 +591,18 @@ body, html {
 
 @media (max-width: 768px) {
     .container {
-        flex-direction: column;
+        overflow: auto; /* Allow scroll on mobile */
     }
     
     .left-side {
+        position: relative;
         width: 100%;
-        min-width: unset;
+        height: auto;
     }
     
     .right-side {
+        margin-left: 0;
         width: 100%;
+        height: auto;
     }
 }
