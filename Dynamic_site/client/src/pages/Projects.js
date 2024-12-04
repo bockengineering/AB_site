@@ -23,17 +23,20 @@ function Projects() {
         const response = await fetch(`https://api.github.com/users/${username}/repos`);
         const repos = await response.json();
         
-        repos.forEach(repo => {
-          const existingProject = projects.find(p => p.github === repo.html_url);
-          if (!existingProject) {
-            setProjects(prev => [...prev, {
-              name: repo.name,
-              description: repo.description || "No description available.",
-              technologies: repo.topics || [],
-              github: repo.html_url,
-              image: "images/default-project-image.jpg"
-            }]);
-          }
+        setProjects(currentProjects => {
+          const updatedProjects = [...currentProjects];
+          repos.forEach(repo => {
+            if (!updatedProjects.find(p => p.github === repo.html_url)) {
+              updatedProjects.push({
+                name: repo.name,
+                description: repo.description || "No description available.",
+                technologies: repo.topics || [],
+                github: repo.html_url,
+                image: "images/default-project-image.jpg"
+              });
+            }
+          });
+          return updatedProjects;
         });
       } catch (error) {
         console.error('Error fetching GitHub repos:', error);

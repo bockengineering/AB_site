@@ -1,6 +1,7 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Navbar from './Navbar';
+import Footer from './Footer';
 import Projects from '../pages/Projects';
 import Reads from '../pages/Reads';
 import Writing from '../pages/Writing';
