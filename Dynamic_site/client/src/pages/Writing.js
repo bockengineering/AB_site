@@ -11,21 +11,25 @@ function Writing() {
   ];
 
   return (
-    <div>
-      <h2>Writing</h2>
-      <ul className="writing-list">
+    <>
+      <h2 className="section-header">Writing</h2>
+      <div className="content-section">
         {writings.map((post, index) => (
-          <li key={index} className="article-box">
-            <div className="substack-post-embed">
-              <p lang="en">{post.title} by {post.author}</p>
-              <a href={post.url} target="_blank" rel="noopener noreferrer" data-post-link>
-                Read on Substack
-              </a>
-            </div>
-          </li>
+          <div key={index} className="content-item">
+            <h3 className="listen-title">{post.title}</h3>
+            <div className="listen-subtitle">by {post.author}</div>
+            <a 
+              href={post.url} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="article-link"
+            >
+              Read on Substack
+            </a>
+          </div>
         ))}
-      </ul>
-    </div>
+      </div>
+    </>
   );
 }
 

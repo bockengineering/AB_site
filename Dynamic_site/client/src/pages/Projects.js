@@ -1,69 +1,70 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 function Projects() {
-  const [projects, setProjects] = useState([
+  const projects = [
     {
       name: "RQ4-B Dynamic Mission Operations (DYNAMO)",
       description: "Northrop Grumman was awarded a contract by the United States Air Force to provide dynamic inflight rerouting for RQ-4B Global Hawk.",
-      image: "images/Global-Hawk.jpg",
+      image: "/images/Global-Hawk.jpg",
       link: "https://news.northropgrumman.com/news/releases/northrop-grumman-awarded-mission-planning-contract-to-increase-global-hawk-operational-flexibility"
     },
     {
-      name: "Microturbine Jetpack for Red Bull Air Race",
-      description: "We developed and flew a cutting-edge microturbine jetpack for the Red Bull Air Race. We the first to fly a turbine powered manned VTOL device safely and successfully",
-      image: "images/jetpack.jpg",
-      link: "https://www.youtube.com/watch?v=GFadyUqRKek"
+      name: "The Craft Creamery",
+      description: "An ice cream tasting bar located in San Diego.",
+      image: "/images/craft-creamery.jpg",
+      link: "https://www.craftcreamerysd.com/about"
+    },
+    {
+      name: "DizzyDoctor",
+      description: "A FDA cleared mobile app that allows users to diagnose and treat dizziness and vertigo.",
+      image: "/images/dizzydoctor.png",
+      link: "https://www.accessdata.fda.gov/cdrh_docs/pdf18/K182214.pdf"
+    },
+    {
+      name: "JB10 Jetpack",
+      description: "Led the development of a personal jetpack system capable of vertical takeoff and landing (VTOL) with advanced stabilization.",
+      image: "/images/jetpack.jpg",
+      link: "https://www.youtube.com/watch?v=nj-Iwv5NJKg"
+    },
+    {
+      name: "JB11 Jetpack",
+      description: "Developed an advanced self stabilizing 6 turbojet personal jetpack system with thrust vectoring and enhanced flight controls.",
+      image: "/images/jb11.jpg",
+      link: "https://www.youtube.com/watch?v=tqS_wTu1lH4&t=239s"
+    },
+    {
+      name: "SPEEDER",
+      description: "Created a dynamically unstable propulsion system optimized for high-speed, low-altitude flight operations.",
+      image: "/images/JPA-Recreational-Speeder-2021.jpg",
+      link: "https://www.youtube.com/watch?v=URgznwTph6M"
     }
-  ]);
-
-  useEffect(() => {
-    const fetchGitHubRepos = async () => {
-      try {
-        const username = 'yourgithubusername';
-        const response = await fetch(`https://api.github.com/users/${username}/repos`);
-        const repos = await response.json();
-        
-        setProjects(currentProjects => {
-          const updatedProjects = [...currentProjects];
-          repos.forEach(repo => {
-            if (!updatedProjects.find(p => p.github === repo.html_url)) {
-              updatedProjects.push({
-                name: repo.name,
-                description: repo.description || "No description available.",
-                technologies: repo.topics || [],
-                github: repo.html_url,
-                image: "images/default-project-image.jpg"
-              });
-            }
-          });
-          return updatedProjects;
-        });
-      } catch (error) {
-        console.error('Error fetching GitHub repos:', error);
-      }
-    };
-
-    fetchGitHubRepos();
-  }, []);
+  ];
 
   return (
-    <div>
-      <h2>Projects</h2>
-      <ul className="projects-list">
+    <>
+      <h2 className="section-header">Projects</h2>
+      <div className="content-section">
         {projects.map((project, index) => (
-          <li key={index} className="project-box">
-            <img src={project.image} alt={project.name} className="project-image" />
-            <h3>{project.name}</h3>
+          <div key={index} className="content-item">
+            {project.image && (
+              <img src={project.image} alt={project.name} className="project-image" />
+            )}
+            <h3 className="listen-title">{project.name}</h3>
             <p className="project-description">{project.description}</p>
             {project.link && (
-              <a href={project.link} target="_blank" rel="noopener noreferrer" className="project-link">
+              <a 
+                href={project.link} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="article-link"
+              >
                 Read more
               </a>
             )}
-          </li>
+          </div>
         ))}
-      </ul>
-    </div>
+      </div>
+    </>
   );
 }
 

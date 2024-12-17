@@ -1,16 +1,22 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 function Reads() {
-  const reads = [
-    {
-      title: "The Future of AI",
-      author: "John Doe",
-      publication: "Tech Review",
-      description: "An in-depth look at artificial intelligence trends",
-      date: "2024-03-15",
-      link: "https://example.com/article1"
-    }
-  ];
+  const [reads, setReads] = useState([]);
+
+  useEffect(() => {
+    fetch('http://localhost:5000/api/reads')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then(data => {
+        console.log('Fetched data:', data);
+        setReads(data);
+      })
+      .catch(error => console.error('Error fetching reads:', error));
+  }, []);
 
   const formatDate = (dateString) => {
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -18,21 +24,37 @@ function Reads() {
   };
 
   return (
-    <div>
-      <h2>What I'm Reading:</h2>
-      <ul className="reads-list">
-        {reads.map((article, index) => (
-          <li key={index} className="article-box">
-            <a href={article.link} target="_blank" rel="noopener noreferrer" className="article-link">
-              <h3>{article.title}</h3>
-              <p className="article-meta">By {article.author} in {article.publication}</p>
-              <p className="article-description">{article.description}</p>
-              <p className="article-date">{formatDate(article.date)}</p>
-            </a>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <>
+      <h2 className="section-header">Reads</h2>
+      <table className="reads-table">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Publication</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          {reads.map((article, index) => (
+            <tr key={index}>
+              <td>
+                <a 
+                  href={article.link} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                >
+                  {article.title}
+                </a>
+              </td>
+              <td>{article.author}</td>
+              <td>{article.publication}</td>
+              <td>{formatDate(article.date)}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </>
   );
 }
 

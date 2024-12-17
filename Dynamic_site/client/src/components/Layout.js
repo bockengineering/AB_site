@@ -6,6 +6,8 @@ import Projects from '../pages/Projects';
 import Reads from '../pages/Reads';
 import Writing from '../pages/Writing';
 import Listens from '../pages/Listens';
+import AboutMe from '../pages/AboutMe';
+import Thesis from '../pages/Thesis';
 
 function Layout() {
   return (
@@ -22,6 +24,8 @@ function Layout() {
       </div>
       <main className="right-side">
         <Routes>
+          <Route path="/about" element={<AboutMe />} />
+          <Route path="/thesis" element={<Thesis />} />
           <Route path="/" element={<Projects />} />
           <Route path="/reads" element={<Reads />} />
           <Route path="/writing" element={<Writing />} />
