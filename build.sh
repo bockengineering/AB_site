@@ -1,4 +1,3 @@
 #!/bin/bash
-rm -rf node_modules
-npm cache clean --force
-npm ci 
+npm ci --only=production
+cd client && npm install --production
