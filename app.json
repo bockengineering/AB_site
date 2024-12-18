@@ -1,0 +1,15 @@
+{
+  "name": "dynamic-site",
+  "description": "Dynamic Site Backend",
+  "scripts": {
+    "postdeploy": "npm ci"
+  },
+  "env": {
+    "NODE_ENV": "production"
+  },
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+} 
