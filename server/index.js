@@ -20,12 +20,32 @@ app.use(cors(corsOptions));
 app.use(express.json());
 
 // Connect to MongoDB
-mongoose.connect(process.env.MONGODB_URI, {
+const MONGODB_URI = process.env.MONGODB_URI;
+if (!MONGODB_URI) {
+  console.error('MONGODB_URI environment variable is not set');
+  process.exit(1);
+}
+
+mongoose.connect(MONGODB_URI, {
   useNewUrlParser: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
+  serverSelectionTimeoutMS: 5000, // Timeout after 5s instead of 30s
+  retryWrites: true,
 })
-.then(() => console.log('Connected to MongoDB'))
-.catch(err => console.error('MongoDB connection error:', err));
+.then(() => {
+  console.log('MongoDB Connected...');
+  console.log('Connection string used (redacted):', 
+    MONGODB_URI.replace(/\/\/.*@/, '//***:***@'));
+})
+.catch(err => {
+  console.error('MongoDB connection error details:', {
+    name: err.name,
+    message: err.message,
+    code: err.code,
+    reason: err.reason
+  });
+  process.exit(1);
+});
 
 // Authentication middleware
 const authenticateToken = (req, res, next) => {
@@ -141,7 +161,7 @@ connectDB();
 // Use routes
 app.use('/api', readsRoute);
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8080;
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
