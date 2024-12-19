@@ -15,8 +15,9 @@ const corsOptions = {
   origin: process.env.NODE_ENV === 'production' 
     ? 'https://alexbock.io'  // Replace with your actual domain
     : 'http://localhost:3000',
-  methods: ['GET', 'POST'],
-  credentials: true
+  methods: ['GET', 'POST', 'OPTIONS'],
+  credentials: true,
+  allowedHeaders: ['Content-Type', 'Authorization']
 };
 
 app.use(cors(corsOptions));

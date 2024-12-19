@@ -4,7 +4,11 @@ function Reads() {
   const [reads, setReads] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/reads')
+    const apiUrl = process.env.NODE_ENV === 'production'
+      ? 'https://alexbock.io/api/reads'
+      : 'http://localhost:5000/api/reads';
+
+    fetch(apiUrl)
       .then(response => {
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);

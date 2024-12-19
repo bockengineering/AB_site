@@ -1,7 +1,13 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
 function ParticleBackground() {
+  const canvasRef = useRef(null);
+
   useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    
+    const ctx = canvas.getContext('2d');
     const NUM_PARTICLES = 500;
     const TAIL_LENGTH = 15;
     const MAX_FORCE = 8;
@@ -29,14 +35,8 @@ function ParticleBackground() {
     }
 
     let particles = [];
-    let canvas, ctx;
 
     function init() {
-      canvas = document.getElementById('particle-canvas');
-      if (!canvas) return;
-      
-      ctx = canvas.getContext('2d');
-
       resizeCanvas();
       window.addEventListener('resize', resizeCanvas);
 
@@ -151,7 +151,7 @@ function ParticleBackground() {
     };
   }, []);
 
-  return null;
+  return <canvas id="particle-canvas" ref={canvasRef} />;
 }
 
 export default ParticleBackground;

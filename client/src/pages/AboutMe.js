@@ -47,7 +47,7 @@ const AboutMe = () => {
           <h3 className="listen-title">Experience</h3>
           <div className="experience-grid">
             <div className="experience-item">
-              <img src="/images/bav_logo.png" alt="Booz Allen Ventures" className="company-logo" />
+              <img src="/images/BAV_logo.png" alt="Booz Allen Ventures" className="company-logo" />
             </div>
             <div className="experience-item">
               <img src="/images/Northrop.svg" alt="Northrop Grumman" className="company-logo" />
