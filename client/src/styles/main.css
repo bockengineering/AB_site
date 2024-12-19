@@ -15,10 +15,11 @@ body, html {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   z-index: -1;
   pointer-events: none;
+  background: linear-gradient(to bottom, #111111, #000000);
 }
 
 .container {
@@ -32,6 +33,9 @@ body, html {
   position: fixed;
   width: 100%;
   z-index: 2;
+  min-height: 100vh;
+  position: relative;
+  z-index: 1;
 }
 
 .left-side {

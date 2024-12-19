@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Layout from './components/Layout';
 import Login from './pages/Login';
 import Apps from './pages/Apps';
@@ -7,17 +7,16 @@ import ParticleBackground from './components/ParticleBackground';
 
 function App() {
   return (
-    <Router>
+    <div style={{ position: 'relative', minHeight: '100vh' }}>
       <ParticleBackground />
-      <Routes>
-        {/* Auth and Apps routes without Layout */}
-        <Route path="/login" element={<Login />} />
-        <Route path="/apps" element={<Apps />} />
-
-        {/* Main site routes with Layout */}
-        <Route path="/*" element={<Layout />} />
-      </Routes>
-    </Router>
+      <Router>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/apps" element={<Apps />} />
+          <Route path="/*" element={<Layout />} />
+        </Routes>
+      </Router>
+    </div>
   );
 }
 

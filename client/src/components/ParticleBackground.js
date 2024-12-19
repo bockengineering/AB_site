@@ -8,6 +8,18 @@ function ParticleBackground() {
     if (!canvas) return;
     
     const ctx = canvas.getContext('2d');
+    
+    // Set initial canvas size
+    function setCanvasSize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    
+    setCanvasSize();
+    
+    // Add resize listener
+    window.addEventListener('resize', setCanvasSize);
+
     const NUM_PARTICLES = 500;
     const TAIL_LENGTH = 15;
     const MAX_FORCE = 8;
@@ -151,7 +163,22 @@ function ParticleBackground() {
     };
   }, []);
 
-  return <canvas id="particle-canvas" ref={canvasRef} />;
+  return (
+    <canvas 
+      ref={canvasRef}
+      id="particle-canvas"
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100vw',
+        height: '100vh',
+        zIndex: -1,
+        pointerEvents: 'none',
+        background: 'linear-gradient(to bottom, #111111, #000000)'
+      }}
+    />
+  );
 }
 
 export default ParticleBackground;
