@@ -4,20 +4,25 @@ function ParticleBackground() {
   const canvasRef = useRef(null);
 
   useEffect(() => {
+    console.log('ParticleBackground mounted');
     let particles = [];
     let animationFrameId;
     
     const canvas = canvasRef.current;
-    if (!canvas) return;
+    if (!canvas) {
+      console.error('Canvas not found');
+      return;
+    }
     
-    const ctx = canvas.getContext('2d');
-    
-    // Set initial canvas size
+    const ctx = canvas.getContext('2d', { alpha: true });
+    if (!ctx) {
+      console.error('Could not get context');
+      return;
+    }
+
     function setCanvasSize() {
-      if (canvas) {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-      }
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
     }
     
     setCanvasSize();
@@ -39,7 +44,7 @@ function ParticleBackground() {
       }
     }
 
-    const NUM_PARTICLES = 500;
+    const NUM_PARTICLES = 300;
     const TAIL_LENGTH = 15;
     const MAX_FORCE = 8;
     const FRICTION = 0.85;
@@ -51,7 +56,7 @@ function ParticleBackground() {
       '#755c43'
     ];
 
-    function init() {
+    function initParticles() {
       particles = [];
       for (let i = 0; i < NUM_PARTICLES; i++) {
         let x = Math.random() * canvas.width;
@@ -64,7 +69,7 @@ function ParticleBackground() {
     function animate() {
       if (!canvas || !ctx) return;
       
-      ctx.fillStyle = 'rgba(17, 17, 17, 0.05)';
+      ctx.fillStyle = 'rgba(17, 17, 17, 0.02)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       ctx.lineCap = ctx.lineJoin = 'round';
@@ -132,7 +137,7 @@ function ParticleBackground() {
       animationFrameId = requestAnimationFrame(animate);
     }
 
-    init();
+    initParticles();
     animate();
 
     return () => {
@@ -147,7 +152,6 @@ function ParticleBackground() {
   return (
     <canvas 
       ref={canvasRef}
-      id="particle-canvas"
       style={{
         position: 'fixed',
         top: 0,
@@ -156,7 +160,7 @@ function ParticleBackground() {
         height: '100vh',
         zIndex: -1,
         pointerEvents: 'none',
-        background: 'linear-gradient(to bottom, #111111, #000000)'
+        background: 'transparent'
       }}
     />
   );

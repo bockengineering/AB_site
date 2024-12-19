@@ -6,7 +6,7 @@ body, html {
   padding: 0;
   height: 100%;
   font-family: 'Ailerons', sans-serif;
-  background: linear-gradient(to bottom, #111111, #000000);
+  /*background: #111111;*/
   color: #A27B5C;
   overflow-x: hidden;
 }
@@ -19,7 +19,7 @@ body, html {
   height: 100vh;
   z-index: -1;
   pointer-events: none;
-  background: linear-gradient(to bottom, #111111, #000000);
+  background: transparent;
 }
 
 .container {
@@ -36,6 +36,7 @@ body, html {
   min-height: 100vh;
   position: relative;
   z-index: 1;
+  background: transparent;
 }
 
 .left-side {
