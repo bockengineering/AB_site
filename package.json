@@ -5,9 +5,8 @@
   "scripts": {
     "start": "node server/index.js",
     "dev": "nodemon server/index.js",
-    "build": "npm ci",
-    "postinstall": "cd client && npm install",
-    "seed": "node scripts/seed-users.js"
+    "build": "npm ci && cd client && npm install && npm run build",
+    "postinstall": "cd client && npm install"
   },
   "dependencies": {
     "express": "^4.18.2",

@@ -1,3 +1,9 @@
 #!/bin/bash
+# Install server dependencies
 npm ci --only=production
-cd client && npm install --production
+
+# Install and build client
+cd client
+npm install --production
+npm run build
+cd ..

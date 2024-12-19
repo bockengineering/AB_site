@@ -7,11 +7,14 @@ const User = require('./models/User');
 require('dotenv').config();
 const connectDB = require('./config/db');
 const readsRoute = require('./routes/reads');
+const path = require('path');
 
 const app = express();
 
 const corsOptions = {
-  origin: 'http://localhost:3000', // React app's address
+  origin: process.env.NODE_ENV === 'production' 
+    ? 'https://alexbock.io'  // Replace with your actual domain
+    : 'http://localhost:3000',
   methods: ['GET', 'POST'],
   credentials: true
 };
@@ -26,12 +29,22 @@ if (!MONGODB_URI) {
   process.exit(1);
 }
 
-mongoose.connect(MONGODB_URI, {
+const connectOptions = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-  serverSelectionTimeoutMS: 5000, // Timeout after 5s instead of 30s
+  serverSelectionTimeoutMS: 5000,
+  ssl: true,
+  authSource: 'admin',
   retryWrites: true,
-})
+  w: 'majority'
+};
+
+if (process.env.NODE_ENV === 'production') {
+  connectOptions.sslValidate = true;
+  connectOptions.sslCA = process.env.SSL_CERT;
+}
+
+mongoose.connect(MONGODB_URI, connectOptions)
 .then(() => {
   console.log('MongoDB Connected...');
   console.log('Connection string used (redacted):', 
@@ -160,6 +173,14 @@ connectDB();
 
 // Use routes
 app.use('/api', readsRoute);
+
+// Serve static files from the React build directory
+app.use(express.static(path.join(__dirname, '../client/build')));
+
+// Handle React routing, return all requests to React app
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+});
 
 const port = process.env.PORT || 8080;
 app.listen(port, () => {
