@@ -27,25 +27,23 @@ const Theses = () => {
   ];
 
   return (
-    <div className="container">
-      <div className="content-section">
-        <h2 className="section-header">Tech Theses</h2>
-        {theses.map((thesis, index) => (
-          <Link 
-            to={`/theses/${thesis.id}`} 
-            key={index} 
-            className="content-item"
-            style={{ textDecoration: 'none' }}
-          >
-            <div className="article-meta">{thesis.date}</div>
-            <h3 className="listen-title">{thesis.title}</h3>
-            <p className="project-description">{thesis.summary}</p>
-            <div className="article-meta">
-              Tags: {thesis.tags.join(', ')}
-            </div>
-          </Link>
-        ))}
-      </div>
+    <div className="content-section theses-grid">
+      <h2 className="section-header full-width">Tech Theses</h2>
+      {theses.map((thesis, index) => (
+        <Link 
+          to={`/theses/${thesis.id}`} 
+          key={index} 
+          className="content-item"
+          style={{ textDecoration: 'none' }}
+        >
+          <div className="article-meta">{thesis.date}</div>
+          <h3 className="listen-title">{thesis.title}</h3>
+          <p className="project-description">{thesis.summary}</p>
+          <div className="article-meta">
+            Tags: {thesis.tags.join(', ')}
+          </div>
+        </Link>
+      ))}
     </div>
   );
 };

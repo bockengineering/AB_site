@@ -1,68 +1,43 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
-function Navbar() {
+const Navbar = () => {
+  const location = useLocation();
+
   return (
-    <nav>
-      <ul className="menu">
-        <li>
-          <NavLink 
-            to="/about" 
-            className={({ isActive }) => isActive ? 'menu-link active' : 'menu-link'}
-          >
-            <span className="menu-number">01</span>
-            <span className="menu-text">About Me</span>
-          </NavLink>
-        </li>
-        <li>
-          <NavLink 
-            to="/thesis"
-            className={({ isActive }) => isActive ? 'menu-link active' : 'menu-link'}
-          >
-            <span className="menu-number">02</span>
-            <span className="menu-text">Thesis</span>
-          </NavLink>
-        </li>
-        <li>
-          <NavLink 
-            to="/" 
-            end
-            className={({ isActive }) => isActive ? 'menu-link active' : 'menu-link'}
-          >
-            <span className="menu-number">03</span>
-            <span className="menu-text">Projects</span>
-          </NavLink>
-        </li>
-        <li>
-          <NavLink 
-            to="/reads"
-            className={({ isActive }) => isActive ? 'menu-link active' : 'menu-link'}
-          >
-            <span className="menu-number">04</span>
-            <span className="menu-text">Reads</span>
-          </NavLink>
-        </li>
-        <li>
-          <NavLink 
-            to="/writing"
-            className={({ isActive }) => isActive ? 'menu-link active' : 'menu-link'}
-          >
-            <span className="menu-number">05</span>
-            <span className="menu-text">Writing</span>
-          </NavLink>
-        </li>
-        <li>
-          <NavLink 
-            to="/listens"
-            className={({ isActive }) => isActive ? 'menu-link active' : 'menu-link'}
-          >
-            <span className="menu-number">06</span>
-            <span className="menu-text">Listens</span>
-          </NavLink>
-        </li>
-      </ul>
-    </nav>
+    <ul className="menu">
+      <li>
+        <Link to="/" className={`menu-link ${location.pathname === '/' ? 'active' : ''}`}>
+          <span className="menu-number">01</span>ABOUT ME
+        </Link>
+      </li>
+      <li>
+        <Link to="/theses" className={`menu-link ${location.pathname === '/theses' ? 'active' : ''}`}>
+          <span className="menu-number">02</span>THESES
+        </Link>
+      </li>
+      <li>
+        <Link to="/projects" className={`menu-link ${location.pathname === '/projects' ? 'active' : ''}`}>
+          <span className="menu-number">03</span>PROJECTS
+        </Link>
+      </li>
+      <li>
+        <Link to="/reads" className={`menu-link ${location.pathname === '/reads' ? 'active' : ''}`}>
+          <span className="menu-number">04</span>READS
+        </Link>
+      </li>
+      <li>
+        <Link to="/writing" className={`menu-link ${location.pathname === '/writing' ? 'active' : ''}`}>
+          <span className="menu-number">05</span>WRITING
+        </Link>
+      </li>
+      <li>
+        <Link to="/listens" className={`menu-link ${location.pathname === '/listens' ? 'active' : ''}`}>
+          <span className="menu-number">06</span>LISTENS
+        </Link>
+      </li>
+    </ul>
   );
-}
+};
 
 export default Navbar;

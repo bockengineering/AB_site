@@ -114,15 +114,13 @@ const ThesisDetail = () => {
   }
 
   return (
-    <div className="container">
-      <div className="content-section">
-        <div className="article-meta">{thesis.date}</div>
-        <h2 className="section-header">{thesis.title}</h2>
-        <div 
-          className="thesis-content"
-          dangerouslySetInnerHTML={{ __html: thesis.content }}
-        />
-      </div>
+    <div className="thesis-detail">
+      <div className="article-meta">{thesis.date}</div>
+      <h2 className="section-header">{thesis.title}</h2>
+      <div 
+        className="thesis-content"
+        dangerouslySetInnerHTML={{ __html: thesis.content }}
+      />
     </div>
   );
 };

@@ -302,6 +302,7 @@ h2 {
 
 /* Content item styles */
 .content-item {
+  width: auto;
   background: rgba(13, 13, 13, 0.4);
   backdrop-filter: blur(10px);
   border-radius: 15px;
@@ -472,8 +473,23 @@ h2 {
   grid-template-columns: repeat(2, 1fr);
   gap: 1.5rem;
   padding: 1rem;
+  width: auto;
+  box-sizing: border-box;
+  overflow-x: hidden;
 }
 
+/* Add specific styles for Theses content */
+.content-section.theses-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  padding: 1rem;
+  width: auto;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+/* Keep the full-width class for items that need to span both columns */
 .full-width {
   grid-column: 1 / -1;
 }
@@ -482,17 +498,20 @@ h2 {
 .experience-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
+  gap: 1rem;
   margin-top: 1rem;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .experience-item {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 2rem;
+  padding: 1rem;
   border-radius: 10px;
   transition: transform 0.2s ease;
+  overflow: hidden;
 }
 
 .experience-item:hover {
@@ -500,9 +519,18 @@ h2 {
 }
 
 .company-logo {
-  width: 180px;
-  height: 120px;
+  width: 150px;
+  height: 100px;
   object-fit: contain;
+  max-width: 100%;
+}
+
+/* Specific sizes for BAV and Northrop logos */
+img[alt="Booz Allen Ventures"],
+img[alt="Northrop Grumman"] {
+  width: 300px;
+  height: 200px;
+  max-width: 100%;
 }
 
 @media (max-width: 1024px) {
@@ -510,28 +538,40 @@ h2 {
     grid-template-columns: repeat(2, 1fr);
   }
   
+  .experience-item {
+    padding: 0.5rem;
+  }
+
   .company-logo {
-    width: 150px;
-    height: 100px;
+    width: 120px;
+    height: 80px;
+  }
+  
+  img[alt="Booz Allen Ventures"],
+  img[alt="Northrop Grumman"] {
+    width: 240px;
+    height: 160px;
   }
 }
 
 @media (max-width: 768px) {
-  .content-section {
-    grid-template-columns: 1fr;
-  }
-  
   .experience-grid {
     grid-template-columns: 1fr;
   }
 
   .experience-item {
-    padding: 2rem;
+    padding: 1rem;
   }
 
   .company-logo {
-    width: 200px;
-    height: 133px;
+    width: 150px;
+    height: 100px;
+  }
+  
+  img[alt="Booz Allen Ventures"],
+  img[alt="Northrop Grumman"] {
+    width: 300px;
+    height: 200px;
   }
 }
 
@@ -858,4 +898,50 @@ input, textarea, button {
 
 .thesis-content p {
   margin: 1rem 0;
+}
+
+/* About page specific grid */
+.content-section.about-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  padding: 1rem;
+  width: auto;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+.about-grid .content-item {
+  margin-bottom: 0;
+}
+
+.about-grid .full-width {
+  grid-column: 1 / -1;
+}
+
+/* Adjust padding for content items */
+.content-item {
+  width: auto;
+  padding: 1.5rem;
+  box-sizing: border-box;
+}
+
+/* Add these styles for thesis detail page */
+.thesis-detail {
+  width: 100%;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.thesis-content {
+  color: #8a6b4e;
+  line-height: 1.6;
+  font-family: 'GT Pressura Mono Light', monospace;
+  background: rgba(13, 13, 13, 0.4);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  border: 1px solid rgba(162, 123, 92, 0.2);
+  padding: 2rem;
+  margin-top: 2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
