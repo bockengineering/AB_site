@@ -8,6 +8,7 @@ import Writing from '../pages/Writing';
 import Listens from '../pages/Listens';
 import AboutMe from '../pages/AboutMe';
 import Theses from '../pages/Theses';
+import PodcastDetail from '../pages/PodcastDetail';
 
 function Layout() {
   return (
@@ -30,6 +31,7 @@ function Layout() {
           <Route path="/reads" element={<Reads />} />
           <Route path="/writing" element={<Writing />} />
           <Route path="/listens" element={<Listens />} />
+          <Route path="/podcasts/:id" element={<PodcastDetail />} />
         </Routes>
       </main>
       <Footer />
