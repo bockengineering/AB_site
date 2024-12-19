@@ -39,7 +39,7 @@ const AboutMe = () => {
             <li>Artificial Intelligence & Machine Learning</li>
             <li>Aerospace & Defense</li>
             <li>Autonomy & Robotics</li>
-            <li>Quantum Computing</li>
+            <li>Edge/Next Gen Computing</li>
             <li>Energy Production & Storage</li>
           </ul>
         </div>
@@ -59,7 +59,7 @@ const AboutMe = () => {
           <h3 className="listen-title">Experience</h3>
           <div className="experience-grid">
             <div className="experience-item">
-              <img src="/images/BAV_logo.png" alt="Booz Allen Ventures" className="company-logo" />
+              <img src="/images/BAV_Logo.png" alt="Booz Allen Ventures" className="company-logo" />
             </div>
             <div className="experience-item">
               <img src="/images/Northrop.svg" alt="Northrop Grumman" className="company-logo" />

@@ -442,9 +442,6 @@ h2 {
   margin: 0 0 2rem 0;
   text-transform: uppercase;
   font-family: 'Ailerons', sans-serif;
-  background: rgba(13, 13, 13, 0.4);
-  backdrop-filter: blur(10px);
-  border-radius: 15px;
   display: inline-block;
 }
 
@@ -835,4 +832,30 @@ input, textarea, button {
   margin: 0 0 2rem 0;
   letter-spacing: 0.2em;
   text-transform: uppercase;
+}
+
+.thesis-content {
+  color: #8a6b4e;
+  line-height: 1.6;
+  font-family: 'GT Pressura Mono Light', monospace;
+}
+
+.thesis-content h3 {
+  color: #A27B5C;
+  font-family: 'Alumni Sans', sans-serif;
+  font-size: 1.8rem;
+  margin: 2rem 0 1rem 0;
+}
+
+.thesis-content ul {
+  margin: 1rem 0;
+  padding-left: 2rem;
+}
+
+.thesis-content li {
+  margin: 0.5rem 0;
+}
+
+.thesis-content p {
+  margin: 1rem 0;
 }
