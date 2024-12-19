@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import config from '../utils/config';
 
 function Reads() {
   const [reads, setReads] = useState([]);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const apiUrl = process.env.NODE_ENV === 'production'
-      ? 'https://alexbock.io/api/reads'
-      : 'http://localhost:5000/api/reads';
+    const apiUrl = `${config.apiUrl}/api/reads`;
+    console.log('Fetching from:', apiUrl);
 
     fetch(apiUrl)
       .then(response => {
@@ -18,9 +20,17 @@ function Reads() {
       .then(data => {
         console.log('Fetched data:', data);
         setReads(data);
+        setLoading(false);
       })
-      .catch(error => console.error('Error fetching reads:', error));
+      .catch(error => {
+        console.error('Error fetching reads:', error);
+        setError(error.message);
+        setLoading(false);
+      });
   }, []);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
 
   const formatDate = (dateString) => {
     const options = { year: 'numeric', month: 'long', day: 'numeric' };

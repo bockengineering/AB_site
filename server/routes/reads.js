@@ -4,8 +4,9 @@ const router = express.Router();
 
 router.get('/', async (req, res) => {
   try {
+    console.log('Fetching reads...');
     const reads = await Read.find().sort({ date: -1 });
-    console.log('Sending reads data:', reads);
+    console.log('Found reads:', reads);
     res.json(reads);
   } catch (error) {
     console.error('Error in reads route:', error);

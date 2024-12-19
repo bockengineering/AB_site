@@ -13,7 +13,7 @@ const app = express();
 
 const corsOptions = {
   origin: process.env.NODE_ENV === 'production' 
-    ? 'https://alexbock.io'  // Replace with your actual domain
+    ? ['https://ab-site-6hir5.ondigitalocean.app', 'https://alexbock.io']
     : 'http://localhost:3000',
   methods: ['GET', 'POST', 'OPTIONS'],
   credentials: true,
@@ -21,6 +21,7 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
 app.use(express.json());
 
 // Connect to MongoDB
@@ -30,35 +31,17 @@ if (!MONGODB_URI) {
   process.exit(1);
 }
 
-const connectOptions = {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  serverSelectionTimeoutMS: 5000,
-  ssl: true,
-  authSource: 'admin',
-  retryWrites: true,
-  w: 'majority'
-};
+mongoose.connection.on('error', err => {
+  console.error('MongoDB connection error:', err);
+});
 
-if (process.env.NODE_ENV === 'production') {
-  connectOptions.sslValidate = true;
-  connectOptions.sslCA = process.env.SSL_CERT;
-}
+mongoose.connection.on('disconnected', () => {
+  console.log('MongoDB disconnected');
+});
 
-mongoose.connect(MONGODB_URI, connectOptions)
-.then(() => {
-  console.log('MongoDB Connected...');
-  console.log('Connection string used (redacted):', 
-    MONGODB_URI.replace(/\/\/.*@/, '//***:***@'));
-})
-.catch(err => {
-  console.error('MongoDB connection error details:', {
-    name: err.name,
-    message: err.message,
-    code: err.code,
-    reason: err.reason
-  });
-  process.exit(1);
+process.on('SIGINT', async () => {
+  await mongoose.connection.close();
+  process.exit(0);
 });
 
 // Authentication middleware
@@ -173,7 +156,7 @@ app.get('/api/apps', authenticateToken, async (req, res) => {
 connectDB();
 
 // Use routes
-app.use('/api', readsRoute);
+app.use('/api/reads', readsRoute);
 
 // Serve static files from the React build directory
 app.use(express.static(path.join(__dirname, '../client/build')));
