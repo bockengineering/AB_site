@@ -1,9 +1,21 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const AboutMe = () => {
   return (
-    <>
-      <h2 className="section-header">About Me</h2>
+    <div className="container">
+      <div className="left-side">
+        <h1 className="name">ALEX<br />BOCK</h1>
+        <p className="job-title">DEEP TECH @ BOOZ ALLEN VENTURES</p>
+        <ul className="menu">
+          <li><Link to="/" className="menu-link active"><span className="menu-number">01</span>ABOUT ME</Link></li>
+          <li><Link to="/theses" className="menu-link"><span className="menu-number">02</span>THESES</Link></li>
+          <li><Link to="/projects" className="menu-link"><span className="menu-number">03</span>PROJECTS</Link></li>
+          <li><Link to="/reads" className="menu-link"><span className="menu-number">04</span>READS</Link></li>
+          <li><Link to="/writing" className="menu-link"><span className="menu-number">05</span>WRITING</Link></li>
+          <li><Link to="/listens" className="menu-link"><span className="menu-number">06</span>LISTENS</Link></li>
+        </ul>
+      </div>
       <div className="content-section">
         <div className="content-item full-width">
           <h3 className="listen-title">Background</h3>
@@ -58,7 +70,7 @@ const AboutMe = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

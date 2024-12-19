@@ -826,3 +826,13 @@ input, textarea, button {
   overflow: hidden;
   margin-top: 1rem;
 }
+
+/* Find and remove or modify any box-related styles for the right-side titles */
+.right-side h2 {
+  /* Remove any background, border, padding, or box-shadow properties */
+  color: #A27B5C;
+  font-size: 2.5rem;
+  margin: 0 0 2rem 0;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}

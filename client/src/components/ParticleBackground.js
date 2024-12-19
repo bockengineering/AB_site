@@ -69,7 +69,7 @@ function ParticleBackground() {
     function animate() {
       if (!canvas || !ctx) return;
       
-      ctx.fillStyle = 'rgba(17, 17, 17, 0.02)';
+      ctx.fillStyle = 'rgba(17, 17, 17, 1)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       ctx.lineCap = ctx.lineJoin = 'round';
