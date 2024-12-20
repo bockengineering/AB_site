@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "main": "server/index.js",
   "scripts": {
-    "start": "node server/index.js",
+    "start": "cd server && npm install && NODE_ENV=production node server.js",
     "dev": "nodemon server/index.js",
-    "build": "npm ci && cd client && npm install && npm run build",
+    "build": "cd client && npm install && npm run build",
     "postinstall": "cd client && npm install",
     "seed-reads": "node scripts/seed-reads.js"
   },

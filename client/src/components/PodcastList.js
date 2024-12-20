@@ -10,7 +10,8 @@ const PodcastList = () => {
   useEffect(() => {
     const fetchPodcasts = async () => {
       try {
-        const response = await fetch('/api/podcasts');
+        const baseUrl = process.env.REACT_APP_API_URL || '';
+        const response = await fetch(`${baseUrl}/api/podcasts`);
         if (!response.ok) {
           throw new Error('Failed to fetch podcasts');
         }

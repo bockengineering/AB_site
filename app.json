@@ -1,14 +1,20 @@
 {
-  "name": "dynamic-site",
-  "description": "Dynamic Site Backend",
+  "name": "personal-site",
   "scripts": {
+    "build": "npm run build",
+    "start": "npm start"
   },
   "env": {
     "NODE_ENV": "production"
   },
-  "buildpacks": [
+  "routes": [
     {
-      "url": "heroku/nodejs"
+      "src": "/api/(.*)",
+      "dest": "server.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "client/build/index.html"
     }
   ]
 } 
