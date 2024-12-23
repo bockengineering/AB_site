@@ -1,5 +1,4 @@
 import React from 'react';
-import PodcastList from '../components/PodcastList';
 
 const AboutMe = () => {
   return (
@@ -56,7 +55,6 @@ const AboutMe = () => {
           </div>
         </div>
       </div>
-      <PodcastList />
     </div>
   );
 };

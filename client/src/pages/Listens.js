@@ -1,13 +1,15 @@
 import React from 'react';
+import { Routes, Route } from 'react-router-dom';
 import PodcastList from '../components/PodcastList';
+import PodcastDetail from './PodcastDetail';
 
-function Listens() {
+const Listens = () => {
   return (
-    <div className="content-section">
-      <h2 className="section-header">Listens</h2>
-      <PodcastList />
-    </div>
+    <Routes>
+      <Route path="/" element={<PodcastList />} />
+      <Route path="/:id" element={<PodcastDetail />} />
+    </Routes>
   );
-}
+};
 
 export default Listens;

@@ -5,7 +5,10 @@
     "start": "npm start"
   },
   "env": {
-    "NODE_ENV": "production"
+    "NODE_ENV": "production",
+    "NOTION_API_KEY": "",
+    "NOTION_PODCAST_DATABASE_ID": "",
+    "PORT": "8080"
   },
   "routes": [
     {

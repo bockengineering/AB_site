@@ -1,11 +1,13 @@
 const { Client } = require('@notionhq/client');
 
 if (!process.env.NOTION_API_KEY) {
-  throw new Error('NOTION_API_KEY is not defined in environment variables');
+  console.error('NOTION_API_KEY is not defined in environment variables');
+  process.exit(1);
 }
 
 if (!process.env.NOTION_PODCAST_DATABASE_ID) {
-  throw new Error('NOTION_PODCAST_DATABASE_ID is not defined in environment variables');
+  console.error('NOTION_PODCAST_DATABASE_ID is not defined in environment variables');
+  process.exit(1);
 }
 
 const notion = new Client({

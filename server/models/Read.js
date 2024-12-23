@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const ReadSchema = new mongoose.Schema({
+const readSchema = new mongoose.Schema({
   title: {
     type: String,
     required: true
@@ -9,18 +9,13 @@ const ReadSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  publication: {
-    type: String,
-    required: true
-  },
   date: {
     type: Date,
-    required: true
+    default: Date.now
   },
-  link: {
-    type: String,
-    required: true
-  }
+  link: String,
+  notes: String,
+  rating: Number
 });
 
-module.exports = mongoose.model('Read', ReadSchema); 
+module.exports = mongoose.model('Read', readSchema); 
