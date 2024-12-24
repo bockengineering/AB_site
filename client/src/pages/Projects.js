@@ -49,7 +49,7 @@ function Projects() {
             {project.image && (
               <img src={project.image} alt={project.name} className="project-image" />
             )}
-            <h3 className="listen-title">{project.name}</h3>
+            <h3 className="projects-title">{project.name}</h3>
             <p className="project-description">{project.description}</p>
             {project.link && (
               <a 

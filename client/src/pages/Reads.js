@@ -1,75 +1,75 @@
 import React, { useState, useEffect } from 'react';
-import config from '../utils/config';
+import './Reads.css';
 
-function Reads() {
+const Reads = () => {
   const [reads, setReads] = useState([]);
-  const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    const apiUrl = `${config.apiUrl}/api/reads`;
-    console.log('Fetching from:', apiUrl);
-
-    fetch(apiUrl)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        return response.json();
-      })
-      .then(data => {
-        console.log('Fetched data:', data);
+    const fetchReads = async () => {
+      try {
+        const response = await fetch('/api/reads');
+        if (!response.ok) throw new Error('Failed to fetch reads');
+        const data = await response.json();
         setReads(data);
+      } catch (err) {
+        setError(err.message);
+      } finally {
         setLoading(false);
-      })
-      .catch(error => {
-        console.error('Error fetching reads:', error);
-        setError(error.message);
-        setLoading(false);
-      });
+      }
+    };
+
+    fetchReads();
   }, []);
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
-
-  const formatDate = (dateString) => {
-    const options = { year: 'numeric', month: 'long', day: 'numeric' };
-    return new Date(dateString).toLocaleDateString('en-US', options);
+  const handleRowClick = (url) => {
+    if (url) {
+      window.open(url, '_blank', 'noopener noreferrer');
+    }
   };
+
+  if (loading) return <div className="content-item">Loading...</div>;
+  if (error) return <div className="content-item">Error: {error}</div>;
 
   return (
     <>
       <h2 className="section-header">Reads</h2>
-      <table className="reads-table">
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Author</th>
-            <th>Publication</th>
-            <th>Date</th>
-          </tr>
-        </thead>
-        <tbody>
-          {reads.map((article, index) => (
-            <tr key={index}>
-              <td>
-                <a 
-                  href={article.link} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                >
-                  {article.title}
-                </a>
-              </td>
-              <td>{article.author}</td>
-              <td>{article.publication}</td>
-              <td>{formatDate(article.date)}</td>
+      <div style={{ width: '100%', overflowX: 'auto' }}>
+        <table className="reads-table">
+          <thead>
+            <tr className="reads-header">
+              <th className="reads-cell">Title</th>
+              <th className="reads-cell">Author</th>
+              <th className="reads-cell">Publication</th>
+              <th className="reads-cell">Date</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {reads.map((read) => (
+              <tr 
+                key={read.id} 
+                className="reads-row"
+                onClick={() => handleRowClick(read.url)}
+                style={{ cursor: read.url ? 'pointer' : 'default' }}
+              >
+                <td className="reads-cell">{read.title}</td>
+                <td className="reads-cell">{read.author}</td>
+                <td className="reads-cell">{read.publication}</td>
+                <td className="reads-cell">
+                  {new Date(read.date).toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                  })}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </>
   );
-}
+};
 
 export default Reads;

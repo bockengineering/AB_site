@@ -1,0 +1,77 @@
+.content-section.about-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.content-item {
+  background-color: rgba(18, 18, 18, 0.4);
+  padding: 2rem;
+  border-radius: 8px;
+}
+
+.content-item.full-width {
+  grid-column: 1 / -1;
+}
+
+.listen-title {
+  font-family: 'Alumni Sans', sans-serif;
+  text-transform: uppercase;
+  color: #A27B5C;
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  letter-spacing: 0.5rem;
+}
+
+.reads-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  font-family: 'GT Pressura Mono Light', monospace;
+  background-color: rgba(18, 18, 18, 0.4);
+}
+
+.reads-header {
+  text-align: left;
+  padding: 1rem;
+  border-bottom: 1px solid rgba(162, 123, 92, 0.2);
+  color: #A27B5C;
+  font-family: 'Alumni Sans', sans-serif;
+  text-transform: uppercase;
+}
+
+.reads-row {
+  border-bottom: 1px solid rgba(162, 123, 92, 0.1);
+  transition: background-color 0.2s;
+}
+
+.reads-row:hover {
+  background-color: rgba(162, 123, 92, 0.05);
+  cursor: pointer;
+}
+
+.reads-cell {
+  padding: 1rem;
+  color: #8a6b4e;
+}
+
+/* Title column */
+.reads-cell:first-child {
+  width: 40%;
+}
+
+/* Author column */
+.reads-cell:nth-child(2) {
+  width: 20%;
+}
+
+/* Publication column */
+.reads-cell:nth-child(3) {
+  width: 20%;
+}
+
+/* Date column */
+.reads-cell:nth-child(4) {
+  width: 20%;
+} 

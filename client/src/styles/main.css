@@ -329,7 +329,7 @@ h2 {
 
 .listen-title {
   font-family: 'Alumni Sans', sans-serif;
-  font-size: 1.8rem;
+  font-size: 1.3rem;
   letter-spacing: 0.1em;
   color: #A27B5C;
   margin: 0;
@@ -919,14 +919,12 @@ input, textarea, button {
   grid-column: 1 / -1;
 }
 
-/* Adjust padding for content items */
 .content-item {
   width: auto;
   padding: 1.5rem;
   box-sizing: border-box;
 }
 
-/* Add these styles for thesis detail page */
 .thesis-detail {
   width: 100%;
   padding: 1rem;
@@ -944,4 +942,34 @@ input, textarea, button {
   padding: 2rem;
   margin-top: 2rem;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Common title base styles */
+.section-title {
+  font-family: 'Alumni Sans', sans-serif;
+  text-transform: uppercase;
+  color: #A27B5C;
+  margin-bottom: 1rem;
+  letter-spacing: 0.5rem;
+}
+
+/* Projects title */
+.projects-title {
+  font-size: 2.2rem;
+}
+
+/* Reads title */
+.reads-title {
+  font-size: 3.5rem;
+}
+
+/* Writing title */
+.writing-title {
+  font-size: 3rem;
+}
+
+/* Theses title */
+.theses-title {
+  font-size: 3rem;
+  color: #A27B5C;
 }
