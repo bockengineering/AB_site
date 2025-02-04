@@ -12,8 +12,8 @@ const Navbar = () => {
         </Link>
       </li>
       <li>
-        <Link to="/theses" className={`menu-link ${location.pathname === '/theses' ? 'active' : ''}`}>
-          <span className="menu-number">02</span>THESES
+        <Link to="/nodes" className={`menu-link ${location.pathname === '/nodes' ? 'active' : ''}`}>
+          <span className="menu-number">02</span>NODES
         </Link>
       </li>
       <li>

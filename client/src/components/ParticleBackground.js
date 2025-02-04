@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 
-function ParticleBackground() {
+function ParticleBackground({ isEnabled = true }) {
   const canvasRef = useRef(null);
 
   useEffect(() => {
@@ -23,6 +23,9 @@ function ParticleBackground() {
     function setCanvasSize() {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
+      // Always draw the background when size changes
+      ctx.fillStyle = 'rgb(17, 17, 17)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
     }
     
     setCanvasSize();
@@ -69,8 +72,12 @@ function ParticleBackground() {
     function animate() {
       if (!canvas || !ctx) return;
       
-      ctx.fillStyle = 'rgba(17, 17, 17, 1)';
+      // Always draw the background
+      ctx.fillStyle = 'rgb(17, 17, 17)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Only animate particles if enabled
+      if (!isEnabled) return;
 
       ctx.lineCap = ctx.lineJoin = 'round';
 
@@ -137,7 +144,11 @@ function ParticleBackground() {
       animationFrameId = requestAnimationFrame(animate);
     }
 
-    initParticles();
+    if (isEnabled) {
+      initParticles();
+    } else {
+      particles = [];
+    }
     animate();
 
     return () => {
@@ -147,7 +158,7 @@ function ParticleBackground() {
       }
       particles = [];
     };
-  }, []);
+  }, [isEnabled]);
 
   return (
     <canvas 
@@ -158,9 +169,11 @@ function ParticleBackground() {
         left: 0,
         width: '100vw',
         height: '100vh',
-        zIndex: -1,
+        zIndex: 0,
         pointerEvents: 'none',
-        background: 'transparent'
+        background: 'rgb(17, 17, 17)',
+        opacity: 1,
+        transition: 'opacity 0.3s ease'
       }}
     />
   );

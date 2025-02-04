@@ -23,6 +23,14 @@ const Theses = () => {
       date: "October 2023",
       summary: "A comprehensive analysis of investment opportunities in deep technology sectors, focusing on breakthrough innovations in propulsion, AI, and advanced materials.",
       tags: ["Deep Tech", "VC", "Innovation"]
+    },
+    {
+      id: 'nuclear-blocks',
+      title: 'Nuclear Blocks',
+      date: "January 2024",
+      summary: "An exploration of nuclear technology innovations and their potential impact on clean energy production and climate change mitigation.",
+      tags: ["Nuclear", "Clean Energy", "Innovation"],
+      externalLink: 'https://app.heptabase.com/w/0570b1a0a8d845fa4588bfec2ae780471d7edacb33ee8bd69e38800e383c0b09'
     }
   ];
 
@@ -31,19 +39,31 @@ const Theses = () => {
       <h2 className="section-header">Tech Theses</h2>
       <div className="content-section">
         {theses.map((thesis, index) => (
-          <Link 
-            to={`/theses/${thesis.id}`} 
-            key={index} 
-            className="content-item"
-            style={{ textDecoration: 'none' }}
-          >
+          <div key={index} className="content-item">
             <div className="article-meta">{thesis.date}</div>
             <h3 className="thesis-title">{thesis.title}</h3>
             <p className="project-description">{thesis.summary}</p>
             <div className="article-meta">
               Tags: {thesis.tags.join(', ')}
             </div>
-          </Link>
+            {thesis.externalLink ? (
+              <a 
+                href={thesis.externalLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="read-more"
+              >
+                Read More →
+              </a>
+            ) : (
+              <Link 
+                to={`/theses/${thesis.id}`}
+                className="read-more"
+              >
+                Read More →
+              </Link>
+            )}
+          </div>
         ))}
       </div>
     </>

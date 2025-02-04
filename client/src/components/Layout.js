@@ -7,9 +7,9 @@ import Reads from '../pages/Reads';
 import Writing from '../pages/Writing';
 import Listens from '../pages/Listens';
 import AboutMe from '../pages/AboutMe';
-import Theses from '../pages/Theses';
+import Nodes from '../pages/Nodes';
 
-function Layout() {
+function Layout({ particlesEnabled, onParticlesToggle }) {
   return (
     <div className="container">
       <div className="left-side">
@@ -25,14 +25,14 @@ function Layout() {
       <main className="right-side">
         <Routes>
           <Route path="/" element={<AboutMe />} />
-          <Route path="/theses" element={<Theses />} />
+          <Route path="/nodes" element={<Nodes />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/reads" element={<Reads />} />
           <Route path="/writing" element={<Writing />} />
           <Route path="/listens/*" element={<Listens />} />
         </Routes>
       </main>
-      <Footer />
+      <Footer particlesEnabled={particlesEnabled} onParticlesToggle={onParticlesToggle} />
     </div>
   );
 }

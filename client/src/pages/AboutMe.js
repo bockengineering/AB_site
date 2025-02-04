@@ -6,15 +6,7 @@ const AboutMe = () => {
       <div className="content-item full-width">
         <h3 className="listen-title">Background</h3>
         <p className="project-description">
-          Heyo! I'm Alex Bock, a Venture Capitalist at Booz Allen Ventures with a focus on Deep Tech. 
-          My journey in the tech world has been driven by a deep curiosity about how 
-          technology can shape our future.
-        </p>
-        <p className="project-description">
-          With extensive experience in aerospace engineering and deep tech ventures, I focus on identifying and supporting 
-          groundbreaking technologies and ambitious founders who are building the next 
-          generation of transformative companies. I thrive on projects that challenge boundaries and drive real-world impact. Beyond work, I pursue adventure in 
-          the mountains and outdoors, always seeking my next challenge.
+          Heyo I'm Alex Bock, currently a Venture Capitalist at Booz Allen Ventures leading our Deep Tech investments. My path in technology started with mechanical/aerospace engineering, driven by a fascination with how technology shapes our future. Today, I leverage my technical background and venture experience to identify and support founders building groundbreaking technologies. I work closely with ambitious teams developing transformative solutions, while maintaining my personal sanity through mountain adventures and outdoor challenges.
         </p>
       </div>
 

@@ -25,8 +25,8 @@ body, html {
 .container {
   display: grid;
   grid-template-columns: 400px 1fr;
-  gap: 2rem;
-  padding: 2rem;
+  gap: 1.5rem;
+  padding: 1.5rem 1.5rem 1rem 1.5rem;
   box-sizing: border-box;
   height: calc(100vh - 60px);
   overflow: hidden;
@@ -45,9 +45,9 @@ body, html {
   border-radius: 15px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(162, 123, 92, 0.1);
-  padding: 2rem;
-  margin: 0 0 2rem 0;
-  height: calc(100vh - 8rem - 60px);
+  padding: 1.5rem;
+  margin: 0 0 1rem 0;
+  height: calc(100vh - 6.5rem - 60px);
   display: flex;
   flex-direction: column;
 }
@@ -58,9 +58,9 @@ body, html {
   border-radius: 15px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(162, 123, 92, 0.1);
-  padding: 2rem;
-  margin: 0 0 2rem 0;
-  height: calc(100vh - 8rem - 60px);
+  padding: 1.5rem;
+  margin: 0 0 1rem 0;
+  height: calc(100vh - 6.5rem - 60px);
   overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-color: #A27B5C rgba(17, 17, 17, 0.4);
@@ -100,17 +100,17 @@ body, html {
 .menu {
   list-style: none;
   padding: 0;
-  margin: 2rem 0;
+  margin: 1.5rem 0;
 }
 
 .menu li {
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
 }
 
 .menu-link {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.75rem;
   text-decoration: none;
   color: rgba(255, 255, 255, 0.3);
   transition: color 0.3s ease;
@@ -167,6 +167,9 @@ body, html {
   border-radius: 10px;
   overflow: hidden;
   border: 1px solid rgba(162, 123, 92, 0.1);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .project-image {
@@ -177,6 +180,10 @@ body, html {
 
 .project-content {
   padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: space-between;
 }
 
 h2 {
@@ -185,7 +192,7 @@ h2 {
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: #A27B5C;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 .article-link {
@@ -219,6 +226,7 @@ h2 {
   align-items: center;
   padding: 0 2rem;
   position: relative;
+  gap: 2rem;
 }
 
 .social-links {
@@ -226,7 +234,7 @@ h2 {
   gap: 2rem;
   text-transform: uppercase;
   letter-spacing: 0.2em;
-  font-size: 1.0 rem;
+  font-size: 1.0rem;
   justify-content: center;
   grid-column: 2;
 }
@@ -241,25 +249,32 @@ h2 {
   color: #8a6b4e;
 }
 
-.login-link {
-  text-transform: uppercase;
+.particle-toggle {
+  display: flex;
+  align-items: center;
+  color: #A27B5C;
+  font-size: 1.0rem;
   letter-spacing: 0.2em;
-  font-size: 0.8rem;
-  padding: 0.5rem 1rem;
-  border: 1px solid #A27B5C;
-  border-radius: 4px;
+  text-transform: uppercase;
+  grid-column: 3;
+}
+
+.login-link {
   color: #A27B5C;
   text-decoration: none;
-  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 1.0rem;
+  transition: color 0.3s ease;
   background: none;
+  border: none;
   cursor: pointer;
-  font-family: inherit;
+  padding: 0;
   grid-column: 1;
 }
 
 .login-link:hover {
-  background: #A27B5C;
-  color: #111111;
+  color: #8a6b4e;
 }
 
 @media (max-width: 1024px) {
@@ -307,8 +322,8 @@ h2 {
   backdrop-filter: blur(10px);
   border-radius: 15px;
   border: 1px solid rgba(162, 123, 92, 0.2);
-  padding: 2rem;
-  margin-bottom: 2rem;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
@@ -437,10 +452,10 @@ h2 {
 
 /* Section headers */
 .section-header {
-  font-size: 3rem;
+  font-size: 2.25rem;
   letter-spacing: 0.3em;
   color: #A27B5C;
-  margin: 0 0 2rem 0;
+  margin: 0 0 0.75rem 0;
   text-transform: uppercase;
   font-family: 'Ailerons', sans-serif;
   display: inline-block;
@@ -476,10 +491,11 @@ h2 {
   width: auto;
   box-sizing: border-box;
   overflow-x: hidden;
+  grid-auto-flow: row;
 }
 
-/* Add specific styles for Theses content */
-.content-section.theses-grid {
+/* Add specific styles for Nodes content */
+.content-section.nodes-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1.5rem;
@@ -498,8 +514,9 @@ h2 {
 .experience-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-  margin-top: 1rem;
+  gap: 0.75rem;
+  margin-top: 0.25rem;
+  margin-bottom: 0;
   width: 100%;
   box-sizing: border-box;
 }
@@ -508,7 +525,7 @@ h2 {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1rem;
+  padding: 0.25rem;
   border-radius: 10px;
   transition: transform 0.2s ease;
   overflow: hidden;
@@ -519,8 +536,8 @@ h2 {
 }
 
 .company-logo {
-  width: 150px;
-  height: 100px;
+  width: 100px;
+  height: 70px;
   object-fit: contain;
   max-width: 100%;
 }
@@ -528,8 +545,8 @@ h2 {
 /* Specific sizes for BAV and Northrop logos */
 img[alt="Booz Allen Ventures"],
 img[alt="Northrop Grumman"] {
-  width: 300px;
-  height: 200px;
+  width: 200px;
+  height: 140px;
   max-width: 100%;
 }
 
@@ -972,4 +989,67 @@ input, textarea, button {
 .theses-title {
   font-size: 3rem;
   color: #A27B5C;
+}
+
+/* Style for the Read More link in project cards */
+.project-card .read-more {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border: 1px solid #A27B5C;
+  border-radius: 4px;
+  color: #A27B5C;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  margin-top: auto;
+  text-align: center;
+  width: fit-content;
+}
+
+.project-card .read-more:hover {
+  background: #A27B5C;
+  color: #111111;
+  transform: translateY(-2px);
+}
+
+/* Nodes title */
+.nodes-title {
+  font-size: 3rem;
+  color: #A27B5C;
+}
+
+/* Node item styles */
+.node-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transition: transform 0.2s ease;
+  height: 100%;
+}
+
+.node-title {
+  font-family: 'Alumni Sans', sans-serif;
+  font-size: 1.8rem;
+  letter-spacing: 0.1em;
+  color: #A27B5C;
+  margin: 0;
+}
+
+.node-subtitle {
+  font-family: 'GT Pressura Mono Light', monospace;
+  color: #8a6b4e;
+  font-size: 1rem;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.content-item:hover .node-item {
+  transform: translateY(-2px);
+}
+
+.article-link {
+  text-decoration: none;
+  color: inherit;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
