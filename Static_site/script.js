@@ -89,7 +89,7 @@ const projects = [
     },
     {
         name: "Microturbine Jetpack for Red Bull Air Race",
-        description: "We developed and flew a cutting-edge microturbine jetpack for the Red Bull Air Race. We the first to fly a turbine powered manned VTOL device safely and successfully",
+        description: "We developed and flew a cutting-edge microturbine jetpack for the Red Bull Air Race. We were the first to fly a turbine-powered manned VTOL device safely and successfully",
         image: "images/jetpack.jpg", 
         link: "https://www.youtube.com/watch?v=GFadyUqRKek"
     },
