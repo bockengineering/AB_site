@@ -1052,3 +1052,40 @@ input, textarea, button {
   display: flex;
   flex-direction: column;
 }
+/* Mobile layout tweaks */
+@media (max-width: 480px) {
+  .name {
+    font-size: 2.5rem;
+  }
+
+  .menu-link {
+    font-size: 1.2rem;
+  }
+
+  .menu-number {
+    display: none;
+  }
+
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 0 1rem;
+    text-align: center;
+  }
+
+  .social-links,
+  .particle-toggle,
+  .login-link {
+    grid-column: auto;
+  }
+
+  .content-section,
+  .content-section.nodes-grid,
+  .content-section.about-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .experience-grid {
+    grid-template-columns: 1fr;
+  }
+}
