@@ -1,0 +1,14 @@
+[
+  {
+    "username": "alex_bock",
+    "password": "$2a$10$6Yw3Ckb0U.Vzd0zS7b.Gte9yUUWGQ1F9FYGUWwQmHzLmZyXs5YK6e",
+    "role": "admin",
+    "created_at": {"$date": "2024-01-01T00:00:00.000Z"}
+  },
+  {
+    "username": "test_user",
+    "password": "$2a$10$9Yw3Ckb0U.Vzd0zS7b.Gte9yUUWGQ1F9FYGUWwQmHzLmZyXs5YK6f",
+    "role": "user",
+    "created_at": {"$date": "2024-01-02T00:00:00.000Z"}
+  }
+] 

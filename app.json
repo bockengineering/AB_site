@@ -1,0 +1,23 @@
+{
+  "name": "personal-site",
+  "scripts": {
+    "build": "npm run build",
+    "start": "npm start"
+  },
+  "env": {
+    "NODE_ENV": "production",
+    "NOTION_API_KEY": "",
+    "NOTION_PODCAST_DATABASE_ID": "",
+    "PORT": "8080"
+  },
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "server.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "client/build/index.html"
+    }
+  ]
+} 
