@@ -56,6 +56,14 @@ const getBlockChildren = async (blockId) => {
 
 const getPodcasts = async (req, res) => {
   try {
+    // Check if Notion client is available
+    if (!notion) {
+      return res.status(503).json({ 
+        error: 'Service Unavailable',
+        message: 'Notion API is not configured'
+      });
+    }
+
     const response = await notion.databases.query({
       database_id: cleanDatabaseId,
       sorts: [
@@ -91,13 +99,52 @@ const getPodcasts = async (req, res) => {
 
     res.json(podcasts);
   } catch (error) {
-    res.status(500).json({ error: 'Failed to fetch podcasts' });
+    console.error('Error in getPodcasts:', error);
+    
+    // Handle specific Notion API errors
+    if (error.code === 'unauthorized') {
+      return res.status(401).json({ 
+        error: 'Unauthorized',
+        message: 'Notion API token is invalid'
+      });
+    }
+    
+    if (error.code === 'notionhq_client_request_timeout') {
+      return res.status(504).json({ 
+        error: 'Gateway Timeout',
+        message: 'Notion API request timed out'
+      });
+    }
+    
+    res.status(500).json({ 
+      error: 'Failed to fetch podcasts',
+      message: process.env.NODE_ENV === 'production' 
+        ? 'Internal server error' 
+        : error.message
+    });
   }
 };
 
 const getPodcastNotes = async (req, res) => {
   try {
+    // Check if Notion client is available
+    if (!notion) {
+      return res.status(503).json({ 
+        error: 'Service Unavailable',
+        message: 'Notion API is not configured'
+      });
+    }
+
     const { id } = req.params;
+    
+    // Validate the ID parameter
+    if (!id || typeof id !== 'string') {
+      return res.status(400).json({ 
+        error: 'Invalid ID',
+        message: 'Podcast ID is required and must be a string'
+      });
+    }
+
     const page = await notion.pages.retrieve({ page_id: id });
     const blocks = await getBlockChildren(id);
     
@@ -115,7 +162,35 @@ const getPodcastNotes = async (req, res) => {
     });
   } catch (error) {
     console.error('Error in getPodcastNotes:', error);
-    res.status(500).json({ error: 'Failed to fetch podcast notes' });
+    
+    // Handle specific Notion API errors
+    if (error.code === 'unauthorized') {
+      return res.status(401).json({ 
+        error: 'Unauthorized',
+        message: 'Notion API token is invalid'
+      });
+    }
+    
+    if (error.code === 'notionhq_client_request_timeout') {
+      return res.status(504).json({ 
+        error: 'Gateway Timeout',
+        message: 'Notion API request timed out'
+      });
+    }
+    
+    if (error.status === 404) {
+      return res.status(404).json({ 
+        error: 'Not Found',
+        message: 'Podcast not found'
+      });
+    }
+    
+    res.status(500).json({ 
+      error: 'Failed to fetch podcast notes',
+      message: process.env.NODE_ENV === 'production' 
+        ? 'Internal server error' 
+        : error.message
+    });
   }
 };
 
