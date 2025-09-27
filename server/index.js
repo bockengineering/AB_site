@@ -11,6 +11,16 @@ const path = require('path');
 
 const app = express();
 
+// Guard against malformed URL encodings in the request path
+app.use((req, res, next) => {
+  try {
+    decodeURIComponent(req.path);
+  } catch (err) {
+    return res.status(400).send('Bad Request');
+  }
+  next();
+});
+
 const corsOptions = {
   origin: process.env.NODE_ENV === 'production' 
     ? ['https://ab-site-6hir5.ondigitalocean.app', 'https://alexbock.io']
@@ -164,6 +174,15 @@ app.use(express.static(path.join(__dirname, '../client/build')));
 // Handle React routing, return all requests to React app
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+});
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+  if (err instanceof URIError) {
+    return res.status(400).send('Bad Request');
+  }
+  console.error('Error:', err);
+  res.status(500).json({ message: 'Server error' });
 });
 
 const port = process.env.PORT || 8080;

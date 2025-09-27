@@ -7,6 +7,17 @@ const app = express();
 const podcastRoutes = require('./routes/podcastRoutes');
 const readRoutes = require('./routes/readRoutes');
 
+// Guard against malformed URL encodings in the request path
+app.use((req, res, next) => {
+  try {
+    // Will throw for sequences like '/%c0' or other invalid encodings
+    decodeURIComponent(req.path);
+  } catch (err) {
+    return res.status(400).send('Bad Request');
+  }
+  next();
+});
+
 // Middleware
 app.use(cors({
   origin: process.env.NODE_ENV === 'production' 
@@ -34,6 +45,9 @@ if (process.env.NODE_ENV === 'production') {
 
 // Error handling middleware
 app.use((err, req, res, next) => {
+  if (err instanceof URIError) {
+    return res.status(400).send('Bad Request');
+  }
   console.error('Error:', err);
   res.status(500).json({ error: err.message || 'Something broke!' });
 });
